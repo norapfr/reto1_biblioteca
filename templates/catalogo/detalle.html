@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Detalle del Título</h2>
+
+<div class="card p-4 mb-4">
+
+    <p><strong>Título:</strong> {{ titulo.titulo }}</p>
+    <p><strong>Autor:</strong> {{ titulo.autor }}</p>
+    <p><strong>ISBN:</strong> {{ titulo.isbn }}</p>
+    <p><strong>Categoría:</strong> {{ titulo.categoria }}</p>
+    <p>
+        <strong>Activo:</strong>
+        {% if titulo.activo %}
+            <span class="badge bg-success">Sí</span>
+        {% else %}
+            <span class="badge bg-danger">No</span>
+        {% endif %}
+    </p>
+
+</div>
+
+<h4>Ejemplares Asociados</h4>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Código Interno</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ejemplar in ejemplares %}
+        <tr>
+            <td>{{ ejemplar.codigo_interno }}</td>
+            <td>
+                {% if ejemplar.estado == "DISPONIBLE" %}
+                    <span class="badge bg-success">Disponible</span>
+                {% elif ejemplar.estado == "PRESTADO" %}
+                    <span class="badge bg-warning">Prestado</span>
+                {% elif ejemplar.estado == "RESERVADO" %}
+                    <span class="badge bg-info">Reservado</span>
+                {% else %}
+                    <span class="badge bg-secondary">Bloqueado</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">No hay ejemplares asociados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'lista_titulos' %}" class="btn btn-secondary">Volver</a>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Listado de Socios</h2>
+
+<div class="mb-3">
+    <a href="{% url 'crear_socio' %}" class="btn btn-primary">
+        Nuevo Socio
+    </a>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for socio in socios %}
+        <tr>
+            <td>{{ socio.dni }}</td>
+            <td>{{ socio.nombre }} {{ socio.apellidos }}</td>
+            <td>{{ socio.email }}</td>
+            <td>{{ socio.tipo_usuario }}</td>
+            <td>
+                {% if socio.activo %}
+                    <span class="badge bg-success">Activo</span>
+                {% else %}
+                    <span class="badge bg-danger">Inactivo</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if socio.activo %}
+                <a href="{% url 'baja_socio' socio.id %}" 
+                   class="btn btn-danger btn-sm">
+                    Baja
+                </a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No existen socios registrados.</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}

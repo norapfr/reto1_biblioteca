@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Estadísticas de Uso del Catálogo</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Total Préstamos</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in estadisticas %}
+        <tr>
+            <td>{{ e.titulo }}</td>
+            <td>{{ e.total_prestamos }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">No hay datos disponibles.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

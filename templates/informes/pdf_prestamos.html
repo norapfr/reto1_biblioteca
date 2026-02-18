@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 5px; }
+        th { background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+
+<h2>Informe Mensual de Préstamos</h2>
+<p>Mes: {{ mes }} / Año: {{ año }}</p>
+<p>Total préstamos: {{ total }}</p>
+
+<table>
+    <tr>
+        <th>Usuario</th>
+        <th>Ejemplar</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+        <th>Devuelto</th>
+    </tr>
+
+    {% for p in prestamos %}
+    <tr>
+        <td>{{ p.usuario }}</td>
+        <td>{{ p.ejemplar }}</td>
+        <td>{{ p.fecha_inicio }}</td>
+        <td>{{ p.fecha_fin }}</td>
+        <td>
+            {% if p.fecha_devolucion %}
+                Sí
+            {% else %}
+                No
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

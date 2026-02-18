@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Confirmar Baja de Socio</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro de que desea dar de baja al socio
+    <strong>{{ socio.nombre }} {{ socio.apellidos }}</strong>
+    con DNI <strong>{{ socio.dni }}</strong>?
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">
+        Confirmar Baja
+    </button>
+    <a href="{% url 'lista_socios' %}" class="btn btn-secondary">
+        Cancelar
+    </a>
+</form>
+
+{% endblock %}

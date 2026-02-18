@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Panel Principal</h2>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Nuevo Préstamo</h5>
+            <a href="/prestamos/nuevo/" class="btn btn-primary">Registrar</a>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Alta Usuario</h5>
+            <a href="/usuarios/crear/" class="btn btn-success">Crear</a>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Catálogo</h5>
+            <a href="/catalogo/" class="btn btn-info">Consultar</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Informe de Sanciones</h2>
+
+<div class="card p-3 mb-4">
+
+    <form method="get">
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>Fecha Inicio</label>
+                <input type="date" name="inicio" class="form-control">
+            </div>
+
+            <div class="col-md-3">
+                <label>Fecha Fin</label>
+                <input type="date" name="fin" class="form-control">
+            </div>
+
+            <div class="col-md-3 align-self-end">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+<h4>Total sanciones: {{ total }}</h4>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Días</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Activa</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in sanciones %}
+        <tr>
+            <td>{{ s.usuario }}</td>
+            <td>{{ s.dias_sancion }}</td>
+            <td>{{ s.fecha_inicio }}</td>
+            <td>{{ s.fecha_fin }}</td>
+            <td>
+                {% if s.activa %}
+                    <span class="badge bg-danger">Sí</span>
+                {% else %}
+                    <span class="badge bg-success">No</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No existen sanciones en este periodo.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

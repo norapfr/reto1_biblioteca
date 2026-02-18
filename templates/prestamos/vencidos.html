@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Préstamos Vencidos</h2>
+
+<table class="table table-bordered table-danger">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Ejemplar</th>
+            <th>Fecha Fin</th>
+            <th>Días de Retraso</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for p in prestamos %}
+        <tr>
+            <td>{{ p.usuario }}</td>
+            <td>{{ p.ejemplar }}</td>
+            <td>{{ p.fecha_fin|date:"d/m/Y" }}</td>
+            <td>
+                {{ p.fecha_fin|timesince }}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No existen préstamos vencidos.</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+<a href="{% url 'lista_prestamos' %}" class="btn btn-secondary">
+    Volver
+</a>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Centro de Informes</h2>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card p-3 mb-3">
+            <h5>Informe Mensual de Préstamos (PDF)</h5>
+            <a href="{% url 'informe_prestamos_pdf' %}" class="btn btn-primary">
+                Generar PDF
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 mb-3">
+            <h5>Informe Mensual de Préstamos (Excel)</h5>
+            <a href="{% url 'informe_prestamos_excel' %}" class="btn btn-success">
+                Exportar Excel
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 mb-3">
+            <h5>Estadísticas de Uso</h5>
+            <a href="{% url 'estadisticas_catalogo' %}" class="btn btn-info">
+                Ver Estadísticas
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 mb-3">
+            <h5>Informe de Sanciones</h5>
+            <a href="{% url 'informe_sanciones' %}" class="btn btn-warning">
+                Ver Sanciones
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

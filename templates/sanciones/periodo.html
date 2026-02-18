@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Informe de Sanciones por Periodo</h2>
+
+<div class="card p-4 mb-4">
+
+    <form method="get">
+        <div class="row">
+
+            <div class="col-md-4">
+                <label class="form-label">Fecha Inicio</label>
+                <input type="date" name="inicio" class="form-control"
+                       value="{{ request.GET.inicio }}">
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Fecha Fin</label>
+                <input type="date" name="fin" class="form-control"
+                       value="{{ request.GET.fin }}">
+            </div>
+
+            <div class="col-md-4 align-self-end">
+                <button type="submit" class="btn btn-primary">
+                    Filtrar
+                </button>
+
+                <a href="{% url 'lista_sanciones' %}" class="btn btn-secondary">
+                    Volver
+                </a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+{% if sanciones %}
+
+<h5>Total sanciones encontradas: {{ sanciones|length }}</h5>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Días</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for s in sanciones %}
+        <tr>
+            <td>{{ s.usuario }}</td>
+            <td>{{ s.dias_sancion }}</td>
+            <td>{{ s.fecha_inicio|date:"d/m/Y" }}</td>
+            <td>{{ s.fecha_fin|date:"d/m/Y" }}</td>
+            <td>
+                {% if s.activa %}
+                    <span class="badge bg-danger">Activa</span>
+                {% else %}
+                    <span class="badge bg-success">Finalizada</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% else %}
+<div class="alert alert-info">
+    No existen sanciones en el periodo seleccionado.
+</div>
+{% endif %}
+
+{% endblock %}

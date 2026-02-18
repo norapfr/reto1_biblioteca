@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Listado de Préstamos</h2>
+
+<div class="mb-3">
+    <a href="{% url 'nuevo_prestamo' %}" class="btn btn-primary">
+        Nuevo Préstamo
+    </a>
+
+    <a href="{% url 'prestamos_vencidos' %}" class="btn btn-warning">
+        Ver Vencidos
+    </a>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Ejemplar</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Devuelto</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for p in prestamos %}
+        <tr>
+            <td>{{ p.usuario }}</td>
+            <td>{{ p.ejemplar }}</td>
+            <td>{{ p.fecha_inicio|date:"d/m/Y" }}</td>
+            <td>{{ p.fecha_fin|date:"d/m/Y" }}</td>
+            <td>
+                {% if p.fecha_devolucion %}
+                    <span class="badge bg-success">Sí</span>
+                {% else %}
+                    <span class="badge bg-danger">No</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if not p.fecha_devolucion %}
+                <a href="{% url 'devolver_prestamo' p.id %}" 
+                   class="btn btn-success btn-sm">
+                    Devolver
+                </a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No hay préstamos registrados.</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}

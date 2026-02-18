@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Confirmar Cancelación</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro de que desea cancelar la reserva del título
+    <strong>{{ reserva.titulo }}</strong> 
+    para el usuario <strong>{{ reserva.usuario }}</strong>?
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">
+        Confirmar Cancelación
+    </button>
+    <a href="{% url 'lista_reservas' %}" class="btn btn-secondary">
+        Volver
+    </a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Confirmar Baja</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro de que desea dar de baja el título:
+    <strong>{{ titulo.titulo }}</strong>?
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar Baja</button>
+    <a href="{% url 'lista_titulos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}
