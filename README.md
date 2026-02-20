@@ -42,8 +42,7 @@ Antes de instalar el sistema, es necesario disponer de:
 ## 3.1 Clonar el repositorio
 
 ```bash
-git clone https://github.com/tuusuario/biblioteca-municipal.git
-cd biblioteca-municipal
+git clone https://github.com/norapfr/reto1_biblioteca.git
 ```
 
 ## 3.2 Crear entorno virtual
@@ -60,7 +59,7 @@ En Windows:
 venv\Scripts\activate
 ```
 
-## 3.4 Instalar dependencias
+## 3.4 Instalar dependencias 
 
 ```bash
 pip install -r requirements.txt
